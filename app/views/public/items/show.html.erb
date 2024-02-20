@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="item-container">
+    <% if @item.image.attached? %>
+      <%= image_tag @item.get_image(300,300) %>
+    <% end %>
+  </div>
+    <div class="item-details">
+      <p><%= @item.name %></p>
+      <p><%= @item.introduction %></p>
+      <p>￥<%= (@item.price_excluding_tax * 1.1).floor %>（税込）</p>
+    </div>
+
+  <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+    <%= f.select :amount, (1..10), prompt: '個数選択' %>
+    <%= f.hidden_field :item_id, :value => @item.id %>
+    <%= f.submit 'カートに入れる', class: 'btn btn-success' %>
+  <% end %>

@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>注文情報入力</h2>
+  <div class="col-xs-12" style="margin-top: 50px;">
+   <%= form_with(model: @order, url: orders_confirm_path, method: :post, local: true) do |f| %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">支払い方法</th>
+            <td>
+              <div class="radio">
+                <%= f.radio_button :payment_method, 'credit_card' %>
+                <label class="payment-label"> クレジットカード</label>
+                <%= f.radio_button :payment_method, 'transfer' %>
+                <label class="payment-label">銀行振込</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">お届け先</th>
+            <td>
+              <div class="radio">
+                <%= radio_button_tag(:selected_address, :radio1) %>
+                <%= label_tag(:selected_address, "ご自身の住所") %>
+                <p>&emsp;<%= @customer.postal_code %><%= @customer.address %></p>
+                <p>&emsp;<%= @customer.last_name %><%= @customer.first_name %></p>
+              </div>
+
+
+             </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+        <%= f.submit "確認画面へ進む",class:"btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,34 @@
+<div class="container">
+  <h3>管理者ログイン</h3>
+
+  <table class="table">
+    <%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
+      <tr>
+        <td class="field">
+          <div class="form-group">
+            <%= f.label :メールアドレス %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",placeholder: "sample@example.com" %>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="field">
+          <div class="form-group">
+            <%= f.label :パスワード %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="actions">
+          <div class="form-group text-center">
+            <%= f.submit "ログイン", class: 'btn btn-primary' %>
+          </div>
+        </td>
+      </tr>
+
+    <% end %>
+  </table>
+</div>

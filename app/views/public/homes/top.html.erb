@@ -1,0 +1,27 @@
+
+<div class="container p-3">
+  <p class="text-ceter">ようこそ、ながのCAKEへ！</p>
+  <p class="text-ceter">このサイトは、ケーキ販売のECサイトになります。</p>
+  <p class="text-ceter">会員でない方も商品の閲覧はできますが、</p>
+  <p class="text-ceter">購入には会員登録が必要になります。</p>
+
+
+  <div class="item-container">
+    <div class="row d-flex mt-5">
+		<div class="col-12">
+				<h3 >新着商品</h3>
+				<div class="d-flex felx-wrap justify-content-around">
+					<% @items.each do |item| %>
+						<div>
+							<%= link_to item_path(item) do %>
+							 <%= image_tag item.get_image(300,300) %>
+							<% end %>
+							<p class="text-left item-name"><%= link_to item.name, item_path(item), class: "item-name-link" %></p>
+
+						</div>
+					<% end %>
+				</div>
+				<%= link_to "全ての商品を見る >", items_path, class: "float-right btn fas fa-cheese products-link mt-4" %>
+		</div>
+	</div>
+</div>

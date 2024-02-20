@@ -1,0 +1,28 @@
+<div class="container">
+  <h3>商品編集画面</h3>
+
+<%= form_with model: @item, url: admin_item_path(@item.id), local: true, method: :patch do |f| %>
+  <table class="table">
+    <tr>
+      <td>商品画像</td>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
+    </tr>
+    <tr>
+      <td>商品名</td>
+      <td><%= f.text_field :name, value: @item.name %></td>
+    </tr>
+    <tr>
+      <td>商品説明</td>
+      <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します", value: @item.introduction %></td>
+    </tr>
+    <tr>
+      <td>税抜価格</td>
+      <td><%= f.text_field :price_excluding_tax, placeholder: "1000", value: @item.price_excluding_tax %></td>
+    </tr>
+    
+    <tr>
+      <td style="text-align: center:" colspan="2"><%= f.submit '変更を保存', class: 'btn btn-success', data: { confirm: '商品を登録してもよろしいですか？' } %></td>
+    </tr>
+  </table>
+<% end %>
+</div>

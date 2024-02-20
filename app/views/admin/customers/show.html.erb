@@ -1,0 +1,47 @@
+<div class="container">
+<h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報</h2>
+
+
+<table class="table">
+  <tr>
+    <td>会員ID</td>
+    <td><%= @customer.id %></td>
+  </tr>
+  <tr>
+    <td>氏名</td>
+    <td><%= @customer.last_name %></td>
+    <td><%= @customer.first_name %></td>
+  </tr>
+  <tr>
+    <td>フリガナ</td>
+    <td><%= @customer.last_name_kana %></td>
+    <td><%= @customer.first_name_kana %></td>
+  </tr>
+  <tr>
+    <td>郵便番号</td>
+    <td><%= @customer.postal_code %></td>
+  </tr>
+  <tr>
+    <td>住所</td>
+    <td><%= @customer.address %></td>
+  </tr>
+  <tr>
+    <td>電話番号</td>
+    <td><%= @customer.telephone_number %></td>
+  </tr>
+  <tr>
+    <td>メールアドレス</td>
+    <td><%= @customer.email %></td>
+  </tr>
+  <tr>
+    <td>会員ステータス</td>
+    <td><% if @customer.is_active == true %>
+    <span class="text-success mt-3">有効</span></td>
+    <td><% elsif @customer.is_active == false %>
+    <span class="text-secondary mt-3">退会</span></td>
+      <% end %>
+  </tr>
+</table>
+
+<%= link_to '編集する', edit_admin_customer_path, class: 'btn btn-success' %>
+<%= link_to '注文履歴一覧を見る', admin_top_path, class: 'btn btn-primary' %>

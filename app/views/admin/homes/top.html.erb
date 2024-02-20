@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>注文履歴一覧</h2>
+
+<table class="table">
+  <tr>
+    <th>購入日時</th>
+    <th>購入者</th>
+    <th>注文個数</th>
+  </tr>
+  <% @orders.order(created_at: :desc).each do |order| %>
+    <tr>
+      <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id), style: 'color: inherit' %></td>
+      <td><%= order.name %></td>
+
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @orders %>
+</div>
+

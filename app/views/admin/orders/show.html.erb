@@ -1,0 +1,64 @@
+<div class="container">
+  <h2>注文履歴詳細</h2>
+
+  <table class="table">
+    <tr>
+      <td>購入者</td>
+      <td><%= link_to @order.name, admin_customer_path(@customer.id), style: 'color: inherit' %></td>
+    </tr>
+    <tr>
+      <td>注文日</td>
+      <td><%= @order.created_at %></td>
+    </tr>
+    <tr>
+      <td>配送先</td>
+      <td><%= @order.postal_code %>  <%= @order.name %> </td>
+    </tr>
+    <tr>
+      <td>支払方法</td>
+      <% if @payment_method == 'credit_card' %>
+        <td>クレジットカード</td>
+      <% else %>
+        <td>銀行振込</td>
+      <% end %>
+    </tr>
+  </table>
+
+  <table class="table">
+    <tr>
+      <td>商品名</td>
+      <td>単価(税込)</td>
+      <td>数量</td>
+      <td>小計</td>
+    </tr>
+
+
+    <% subtotal = 0 %>
+    <% @order_details.each do |order_detail| %>
+      <% subtotal += (order_detail.price_including_tax * 1.1).to_i * (order_detail.quantity) %>
+      <tr>
+        <td><%= order_detail.item.name %></td>
+        <td><%= (order_detail.price_including_tax * 1.1).to_i %></td>
+        <td><%= order_detail.quantity %></td>
+        <td><%= (order_detail.price_including_tax * 1.1).to_i * order_detail.quantity %></td>
+      </tr>
+    <% end %>
+  </table>
+
+
+  <table class="total_table">
+    <tr>
+      <td>商品合計</td>
+      <td colspan="3"></td>
+      <td><%= subtotal %></td>
+    </tr>
+      <td>送料</td>
+      <td colspan="3"></td>
+      <td><%= @postage %></td>
+    <tr>
+      <td>請求合計金額</td>
+      <td colspan="3"></td>
+      <td><%= subtotal + @postage %></td>
+    </tr>
+  </table>
+</div>

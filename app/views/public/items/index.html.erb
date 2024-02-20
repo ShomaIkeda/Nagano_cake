@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>商品一覧 (全<%= @total_items_count %>件)</h2>
+
+  <div class="item-container">
+    <% @items.each_slice(3).with_index do |items, index| %>
+      <% items.each do |item| %>
+        <div class="item" style="float:left;margin-right:10px;">
+
+           <%= link_to item_path(item.id) do %>
+                    <%= image_tag item.get_image(300,300) %>
+             <% end %>
+
+          <p><%= item.name %></p>
+          <p>￥<%= item.price_excluding_tax %></p>
+        </div>
+      <% end %>
+      <% if (index) % 3 == 0 %>
+        <div style="clear:both;"></div>
+      <% end %>
+    <% end %>
+
+    <div style="clear:both;"></div>
+    <div style="text-align:center;">
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>

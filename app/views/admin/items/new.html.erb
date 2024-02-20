@@ -1,0 +1,29 @@
+<div class="container">
+
+<%= form_with model: @item, url: admin_items_path, local: true do |f| %>
+
+<h3>商品新規登録</h3>
+
+
+<p>商品画像</p>
+  <%= f.file_field :image, accept: "image/*" %>
+
+<p>商品名</p>
+<%= f.text_area :name, placeholder: "商品名" %>
+
+<p>商品説明</p>
+  <%= f.text_area :introduction, placeholder: "ここに説明文を記述します"  %>
+
+<p>税抜価格</p>
+  <%= f.text_field :price_excluding_tax, placeholder: "1000" %>
+
+
+
+ 
+
+
+<%= f.submit '新規登録', class: 'btn btn-success', data: { confirm: '商品を登録してもよろしいですか？' } %>
+
+<% end %>
+
+</div>

@@ -1,0 +1,63 @@
+<div style="position: fixed; top: 10%; left: 10%;">
+  <h3>注文詳細画面</h3>
+
+  <div style="position: fixed; top: 20%; left: 10%;">
+    <strong>注文情報</strong>
+    <table class="table">
+        <tr>
+          <td>注文日</td><td><%= @orders.first.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <td>配送先</td>
+          <td>〒<%= @customer.postal_code %><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td>支払方法</td>
+          <td><% if @payment_method == 'credit_card' %>
+                クレジットカード
+              <% else %>
+                銀行振込
+              <% end %>
+          </td>
+        </tr>
+    </table>
+  </div>
+
+  <div style="position: fixed; top: 50%; left: 10%;">
+    <strong>注文内容</strong>
+       <table class="table">
+          <tr>
+            <td>商品</td>
+            <td>単価(税込)</td>
+            <td>個数</td>
+            <td>小計</td>
+          </tr>
+        <% subtotal = 0 %>
+        <% @order_details.each do |order_detail| %>
+          <% subtotal += (order_detail.price * 1.1).to_i * (order_detail.quentity) %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= (order_detail.price * 1.1).to_i %></td>
+            <td><%= order_detail.quentity %></td>
+            <td><%= (order_detail.price * 1.1).to_i * (order_detail.quentity) %></td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
+
+  <div style="position: fixed; top: 20%; left: 50%;">
+      <strong>注文請求金額</strong>
+
+        <table class="table">
+          <tr>
+            <td>送料</td><td><%= @postage %></td>
+          </tr>
+          <tr>
+            <td>商品合計</td><td><%= subtotal %></td>
+          </tr>
+          <tr>
+            <td>請求金額</td><td><%= @postage + subtotal %></td>
+          </tr>
+      </table>
+  </div>
+</div>

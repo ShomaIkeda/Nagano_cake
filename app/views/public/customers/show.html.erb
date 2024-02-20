@@ -1,0 +1,43 @@
+<div class="container">
+<h3>マイページ</h3>
+
+<p style="width:50px;">&nbsp;</p>
+
+<strong>登録情報
+
+<%= link_to '編集する',edit_information_path, class: 'btn btn-success' %></strong>
+
+<p style="width:20px;">&nbsp;</p>
+
+<table style="border: 1px solid black; width: 500px;">
+  <tr style="border: 1px solid black; width: 500px;">
+    <th style="border-right: 1px solid black; width: 300px;">氏名</th>
+    <td style="border-right: 1px solid black; width: 500px;"><%= @customer.last_name %><%= @customer.first_name %></td>
+  </tr>
+  <tr style="border: 1px solid black; width: 500px;">
+    <th style="border-right: 1px solid black; width: 300px;">カナ</th>
+    <td style="border-right: 1px solid black; width: 500px;"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+  </tr>
+  <tr style="border: 1px solid black; width: 500px;">
+    <th style="border-right: 1px solid black; width: 300px;">郵便番号</th>
+    <td style="border-right: 1px solid black; width: 500px;"><%= @customer.postal_code %></td>
+  </tr>
+  <tr style="border: 1px solid black; width: 500px;">
+    <th style="border-right: 1px solid black; width: 300px;">住所</th>
+    <td style="border-right: 1px solid black; width: 500px;"><%= @customer.address %></td>
+  </tr>
+  <tr style="border: 1px solid black; width: 500px;">
+    <th style="border-right: 1px solid black; width: 300px;">電話番号</th>
+    <td style="border-right: 1px solid black; width: 500px;"><%= @customer.telephone_number %></td>
+  </tr>
+  <tr style="border: 1px solid black;">
+    <th style="border-right: 1px solid black;">メールアドレス</th>
+    <td style="border-right: 1px solid black;"><%= @customer.email %></td>
+  </tr>
+</table>
+<p style="width:300px;">&nbsp;</p>
+
+<strong>注文履歴
+<%= link_to '一覧を見る', orders_path, class: 'btn btn-primary' %></strong>
+
+</div>

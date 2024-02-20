@@ -1,0 +1,44 @@
+<div class="container">
+<h3>会員情報編集画面</h3>
+  <%= form_with model: @customer, url: admin_customer_path(@customer.id), local: true, method: :patch do |f| %>
+
+<table class="table">
+  <tr>
+    <td>会員ID</td>
+    <td><%= @customer.id %></td>
+  </tr>
+  <tr>
+    <td>氏名</td>
+    <td><%= f.text_field :last_name, value: @customer.last_name %> <%= f.text_field :first_name, value: @customer.first_name %></td>
+  </tr>
+  <tr>
+    <td>フリガナ</td>
+    <td><%= f.text_field :last_name_kana, value: @customer.last_name_kana %> <%= f.text_field :first_name_kana, value: @customer.first_name_kana %></td>
+  </tr>
+  <tr>
+    <td>郵便番号</td>
+    <td><%= f.text_field :postal_code, value: @customer.postal_code %></td>
+  </tr>
+  <tr>
+    <td>電話番号</td>
+    <td><%= f.text_field :telephone_number, value: @customer.telephone_number %></td>
+  </tr>
+  <tr>
+    <td>メールアドレス</td>
+    <td><%= f.text_field :email, value: @customer.email %></td>
+  </tr>
+  <tr>
+    <td>住所</td>
+    <td><%= f.text_field :address, value: @customer.address %> </td>
+  </tr>
+  <tr>
+    <td>会員ステータス<td>
+      <%= f.label :is_active, '有効', value: true %>
+      <%= f.radio_button :is_active, true %>
+      <%= f.label :is_active, '退会', value: false %>
+      <%= f.radio_button :is_active, false %>
+  </tr>
+</table>
+
+<%= f.submit '変更を保存', class: 'btn btn-success', data: { confirm: '情報を登録してもよろしいですか？' } %>
+<% end %>
